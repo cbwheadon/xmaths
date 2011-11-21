@@ -2,7 +2,7 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @players = Player.all
+    @players = Player.order(:name)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -61,7 +61,8 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.update_attributes(params[:player])
-        format.html { redirect_to @player, notice: 'Player was successfully updated.' }
+        format.html { redirect_to @player, 
+        	notice: "User #{@player.name} logged in."}
         format.json { head :ok }
       else
         format.html { render action: "edit" }

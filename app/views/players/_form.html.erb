@@ -1,8 +1,10 @@
-<%= form_for(@player) do |f| %>
+<div class="depot_form">
+
+<%= form_for @player do |f| %>
   <% if @player.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
-
+      <h2><%= pluralize(@player.errors.count, "error") %>
+        prohibited this user from being saved:</h2>
       <ul>
       <% @player.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -11,23 +13,29 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <fieldset>
+  <legend>Enter User Details</legend>
+
+  <div>
+    <%= f.label :name %>:
+    <%= f.text_field :name, size: 40 %>
   </div>
-  <div class="field">
-    <%= f.label :games %><br />
-    <%= f.number_field :games %>
+
+  <div>
+    <%= f.label :password, 'Password' %>:
+    <%= f.password_field :password, size: 40 %>
   </div>
-  <div class="field">
-    <%= f.label :wins %><br />
-    <%= f.number_field :wins %>
+
+  <div>
+    <%= f.label :password_confirmation, 'Confirm' %>:
+    <%= f.password_field :password_confirmation, size: 40 %>
   </div>
-  <div class="field">
-    <%= f.label :inarow %><br />
-    <%= f.number_field :inarow %>
-  </div>
-  <div class="actions">
+
+  <div>
     <%= f.submit %>
   </div>
+
+  </fieldset>
 <% end %>
+
+</div>
