@@ -1,0 +1,28 @@
+<h1>Listing playgrounds</h1>
+
+<table>
+  <tr>
+  	<th>Id</th>
+  	<th>Player 1</th>
+  	<th>Player 2</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @playgrounds.each do |playground| %>
+  <tr>
+  	<td><%= playground.id %></id>
+  	<% playground.game_players.each do |item|%>
+  	<td><%= item.player.name%></td>
+  	<% end %>
+    <td><%= link_to 'Show', playground %></td>
+    <td><%= link_to 'Edit', edit_playground_path(playground) %></td>
+    <td><%= link_to 'Destroy', playground, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Playground', new_playground_path %>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  player1_id: 1
+  player2_id: 1
+  p1_correct: 1
+  p2_correct: 1
+  p1_time: 1
+  p2_time: 1
+  result: 1
+
+two:
+  player1_id: 1
+  player2_id: 1
+  p1_correct: 1
+  p2_correct: 1
+  p1_time: 1
+  p2_time: 1
+  result: 1

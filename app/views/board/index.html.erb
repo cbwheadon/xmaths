@@ -1,0 +1,32 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+
+<h1>Welcome to the game board!</h1>
+
+<div>
+<% @players.each do |player| %>
+  <div><%= player.id %></div>
+  <div><%= player.name %></div>
+  <%= button_to 'Add to Game', game_players_path(player_id: player)%>
+<% end %>
+</div>
+
+<table>
+  <tr>
+  	<th>Id</th>
+  	<th>Players</th>
+  	<th>Player 1</th>
+  	<th>Player 2</th>
+  </tr>
+
+<% @playgrounds.each do |playground| %>
+  <tr>
+  	<td><%= playground.id %></td>
+  	<td><%= playground.game_players.count %></td>
+  	<% playground.game_players.each do |item|%>
+  	<td><%= item.player.name%></td>
+  	<% end %>
+  </tr>
+<% end %>
+</table>

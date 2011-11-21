@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  stimulus: MyText
+  image_url: MyString
+  param1: 1
+  param2: 1
+  answer: 1
+
+two:
+  stimulus: MyText
+  image_url: MyString
+  param1: 1
+  param2: 1
+  answer: 1

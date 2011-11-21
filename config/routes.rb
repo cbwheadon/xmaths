@@ -1,5 +1,15 @@
 Xmaths::Application.routes.draw do
   
+  resources :game_players
+
+  resources :playgrounds
+
+  resources :questions
+
+  resources :games
+
+    get "board/index"
+  
 	get 'admin' => 'admin#index'
 
   	controller :sessions do
@@ -61,7 +71,8 @@ Xmaths::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
-  root to: 'players#new'
+  # root to: 'players#new'
+  root to: 'board#index', as: 'board'
 
   # See how all your routes lay out with "rake routes"
 

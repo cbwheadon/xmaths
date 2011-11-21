@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Id:</b>
+  <%= @playground.id %>
+  <ul>
+  	<% @playground.game_players.each do |item|%>
+  	<li><%= item.player.name%></li>
+  	<% end %>
+  </ul>	
+</p>
+
+<%= link_to 'Edit', edit_playground_path(@playground) %> |
+<%= link_to 'Back', playgrounds_path %>
