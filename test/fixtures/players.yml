@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  games: 1
+  wins: 1
+  inarow: 1
+
+two:
+  name: MyString
+  games: 1
+  wins: 1
+  inarow: 1
