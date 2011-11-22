@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
   		if fg == 0	
   			playground = Playground.create
   		end
+  		session[:playground_id] = playground.id
   		return playground
   			
   end
