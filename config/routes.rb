@@ -1,18 +1,12 @@
 Xmaths::Application.routes.draw do
   
-  resources :papers
-
   resources :q_responses
-
-  get "contest/index"
 
   resources :game_players
 
   resources :playgrounds
 
   resources :questions
-
-  resources :games
 
     get "board/index"
   
