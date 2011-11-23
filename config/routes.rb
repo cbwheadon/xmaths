@@ -1,5 +1,11 @@
 Xmaths::Application.routes.draw do
   
+  resources :papers
+
+  resources :q_responses
+
+  get "contest/index"
+
   resources :game_players
 
   resources :playgrounds
@@ -11,6 +17,8 @@ Xmaths::Application.routes.draw do
     get "board/index"
   
 	get 'admin' => 'admin#index'
+	
+	get 'contest' => 'contest#index'
 
   	controller :sessions do
     get  'login' => :new

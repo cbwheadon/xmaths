@@ -1,14 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Id:</b>
-  <%= @playground.id %>
+  <div>Playground:<%= @playground.id %></div>
+  <div>Question:<%= session[:qid] %></div>
+  <div>Answer:<%= @question.number_response %></div>
+  
   <ul>
   	<% @playground.game_players.each do |item|%>
-  	<li><%= item.player.name%></li>
+  	
+	  	<li>Name: <%= item.player.name%></li>
+	  	<li>Response: <%= item.player.response %></li>
+	  	<li>Correct: <%= item.player.correct%></li>
+	  	<li>Time:<%= item.player.time%></li>
+	  	<li>Points:<%= item.player.winner%></li>
+	  	
   	<% end %>
   </ul>	
 </p>
-
+<div>
+Responses:<%= @playground.q_responses.count %>
+</div>
 <%= link_to 'Edit', edit_playground_path(@playground) %> |
 <%= link_to 'Back', playgrounds_path %>

@@ -40,9 +40,17 @@ class GamePlayersController < ApplicationController
   # POST /game_players
   # POST /game_players.json
   def create
+  	#Add player to playground
     @playground = current_playground
-	player = Player.find(params[:player_id])
-	@game_player = @playground.game_players.build(player: player)
+    #Reset player question variables
+	@player = Player.find(params[:player_id])
+	@player.update_attribute(:response, '')
+	@player.update_attribute(:correct, -1)
+	@player.update_attribute(:time, 1000)
+	@player.update_attribute(:winner, -1)
+	
+	@game_player = @playground.game_players.build(player: @player)
+	
     respond_to do |format|
       if @game_player.save
         format.html { redirect_to board_path, notice: 'Game player was successfully added.' }

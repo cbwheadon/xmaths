@@ -1,0 +1,25 @@
+<%= form_for(@q_response) do |f| %>
+  <% if @q_response.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@q_response.errors.count, "error") %> prohibited this q_response from being saved:</h2>
+
+      <ul>
+      <% @q_response.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :q_time %><br />
+    <%= f.number_field :q_time %>
+  </div>
+  <div class="field">
+    <%= f.label :number_response %><br />
+    <%= f.text_area :number_response %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

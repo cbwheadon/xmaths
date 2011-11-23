@@ -24,7 +24,7 @@ class GamesController < ApplicationController
   # GET /games/new
   # GET /games/new.json
   def new
-    @game = Game.new
+  	@game = Game.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,7 +40,9 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    @game = Game.new(params[:game])
+  	@playground = Playground.find(params[:playground_id])
+  	@game = Game.new(params[:game])
+  	@game.add_game_players_from_playground(@playground)
 
     respond_to do |format|
       if @game.save

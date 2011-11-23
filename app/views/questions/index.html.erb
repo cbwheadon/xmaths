@@ -2,11 +2,12 @@
 
 <table>
   <tr>
+  	<th>Id</th>
     <th>Stimulus</th>
     <th>Image url</th>
     <th>Param1</th>
     <th>Param2</th>
-    <th>Answer</th>
+    <th>Number Response</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,11 +15,12 @@
 
 <% @questions.each do |question| %>
   <tr>
+  	<td><%= question.id %></td>
     <td><%= question.stimulus %></td>
     <td><%= question.image_url %></td>
     <td><%= question.param1 %></td>
     <td><%= question.param2 %></td>
-    <td><%= question.answer %></td>
+    <td><%= question.number_response %></td>
     <td><%= link_to 'Show', question %></td>
     <td><%= link_to 'Edit', edit_question_path(question) %></td>
     <td><%= link_to 'Destroy', question, confirm: 'Are you sure?', method: :delete %></td>

@@ -29,13 +29,12 @@
   	<% playground.game_players.each do |item|%>
   	<td><%= item.player.name%></td>
   	<% end %>
+  	<%= button_to 'Go!', new_q_response_path, method: :get %>
   </tr>
 <% end %>
 </table>
-<div>
-	<%= button_to 'Start Game', games_path %>
+
 <div>	
-<div>	
-Playground: <%= session[:playground_id] %>
-Player: <%= session[:player_id] %>	
+	Playground: <%= session[:playground_id] %>
+	Player: <%= session[:player_id] %>	
 </div>

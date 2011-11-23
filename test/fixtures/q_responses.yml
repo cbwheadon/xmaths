@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  q_time: 1
+  q_response: MyText
+
+two:
+  q_time: 1
+  q_response: MyText

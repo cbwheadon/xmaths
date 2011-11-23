@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+Player:<%= session[:player_id] %>
+Playground:<%= session[:playground_id] %>
+<p>
+  <b>Q time:</b>
+  <%= @q_response.q_time %>
+</p>
+
+<p>
+  <b>Q response:</b>
+  <%= @q_response.number_response %>
+</p>
+
+
+<%= link_to 'Edit', edit_q_response_path(@q_response) %> |
+<%= link_to 'Back', q_responses_path %>

@@ -1,0 +1,25 @@
+<h1>Listing q_responses</h1>
+
+<table>
+  <tr>
+    <th>Q time</th>
+    <th>Q response</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @q_responses.each do |q_response| %>
+  <tr>
+    <td><%= q_response.q_time %></td>
+    <td><%= q_response.q_response %></td>
+    <td><%= link_to 'Show', q_response %></td>
+    <td><%= link_to 'Edit', edit_q_response_path(q_response) %></td>
+    <td><%= link_to 'Destroy', q_response, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Q response', new_q_response_path %>

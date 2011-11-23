@@ -21,5 +21,15 @@ class ApplicationController < ActionController::Base
   		return playground
   			
   end
+  
+  private
+  
+  def mark_question
+  	
+  	@player = Player.find(session[:player_id])
+    @player.update_attribute(:correct, 0)
+  
+    
+	end
   		
 end
