@@ -1,0 +1,14 @@
+<table>
+<tr>
+	<td><%= playground.id %></td>
+	<td><%= playground.game_players.count %></td>
+	<% if playground.game_players.count==2 %>
+	<%= render (playground.game_players) %>
+	<% else %>
+	<td>
+	<%= playground.game_players[0].player.name %>
+	</td>
+	<td>...</td>
+	<% end %>
+</tr>
+</table>

@@ -3,10 +3,10 @@ class PlaygroundsController < ApplicationController
   # GET /playgrounds.json
   def index
     @playgrounds = Playground.all
-	respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @playgrounds }
-    end
+	#respond_to do |format|
+    #  format.html # index.html.erb
+    #  format.json { render json: @playgrounds }
+    #end
   end
 
   # GET /playgrounds/1

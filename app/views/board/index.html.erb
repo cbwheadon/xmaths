@@ -3,38 +3,34 @@
 <% end %>
 
 <h1>Welcome to the game board!</h1>
-
-<div>
-<% @players.each do |player| %>
-  <div><%= player.id %></div>
-  <div><%= player.name %></div>
-  <% if player.id == session[:player_id]%>
-  <%= button_to 'Add to Game', game_players_path(player_id: player)%>
-  <% end %>
-<% end %>
-</div>
-
+  
+<p>
+Players:	
+</p>
 <table>
-  <tr>
-  	<th>Id</th>
-  	<th>Players</th>
-  	<th>Player 1</th>
-  	<th>Player 2</th>
-  </tr>
-
-<% @playgrounds.each do |playground| %>
-  <tr>
-  	<td><%= playground.id %></td>
-  	<td><%= playground.game_players.count %></td>
-  	<% playground.game_players.each do |item|%>
-  	<td><%= item.player.name%></td>
-  	<% end %>
-  	<%= button_to 'Go!', new_q_response_path, method: :get %>
-  </tr>
-<% end %>
+	<div class="players">
+		<%= render @players %>
+	</div>
 </table>
+<p>
+<div>
+	<%= button_to 'Add to Playground', game_players_path(player_id: @player), remote: true %>	
+<div>
+</p>
+<p>
+Playgrounds:
+</p>
+<p>
+<div id="playgrounds">
 
-<div>	
-	Playground: <%= session[:playground_id] %>
-	Player: <%= session[:player_id] %>	
+		<%= render @playgrounds %>
+	
 </div>
+</p>
+<p>
+<%= button_to 'Go!', new_q_response_path, method: :get %>
+</p>
+<p>Debug:</p>
+	Playground: <%= session[:playground_id] %>
+	Player: <%= @player.id %>	
+</p>

@@ -7,3 +7,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(function(){
+	if ($("#playgrounds").length > 0) {
+		setTimeout(updateComments, 10000);
+	}
+});
+
+function updateComments () {
+	$.getScript("/playgrounds.js")
+	setTimeout(updateComments, 10000)
+}
+

@@ -5,17 +5,14 @@
   <div>Question:<%= session[:qid] %></div>
   <div>Answer:<%= @question.number_response %></div>
   
-  <ul>
-  	<% @playground.game_players.each do |item|%>
-  	
-	  	<li>Name: <%= item.player.name%></li>
-	  	<li>Response: <%= item.player.response %></li>
-	  	<li>Correct: <%= item.player.correct%></li>
-	  	<li>Time:<%= item.player.time%></li>
-	  	<li>Points:<%= item.player.winner%></li>
-	  	
-  	<% end %>
-  </ul>	
+<table>
+    <div id="playground">
+	
+	<%= render (@playground.game_players) %>
+	
+	</div>
+</table>
+
 </p>
 <div>
 Responses:<%= @playground.q_responses.count %>
