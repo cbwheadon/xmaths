@@ -2,35 +2,58 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 
-<h1>Welcome to the game board!</h1>
-  
-<p>
-Players:	
-</p>
-<table>
-	<div class="players">
-		<%= render @players %>
-	</div>
-</table>
-<p>
-<div>
-	<%= button_to 'Add to Playground', game_players_path(player_id: @player), remote: true %>	
-<div>
-</p>
-<p>
-Playgrounds:
-</p>
-<p>
-<div id="playgrounds">
+<div class = "grid_12">
+	<h1>Welcome to the game board!</h1>
+</div> 
 
-		<%= render @playgrounds %>
-	
+<div class = "grid_4">
+	Players:	
+		<div id = "players" class="players">
+			<%= render @players %>
+		</div>
 </div>
-</p>
-<p>
-<%= button_to 'Go!', new_q_response_path, method: :get %>
-</p>
-<p>Debug:</p>
-	Playground: <%= session[:playground_id] %>
-	Player: <%= @player.id %>	
-</p>
+	
+<div class = "grid_3">
+	Playgrounds:
+	<div id="playgrounds">
+	
+			<%= render @playgrounds %>
+		
+	</div>
+
+<%= button_to 'Go!', new_q_response_path, method: :get, remote: true %>
+
+</div>
+<div class = "grid_5" id="question_pane">
+</div>
+
+<div class = "grid_12">
+	<hr>
+</div>
+<div class = "grid_12">
+	<div id = "login">
+		<%= form_tag("/login", :method => "post") do %>
+		<%= label_tag(:name, 'Name:') %>
+	  	<%= text_field_tag(:name) %>
+	  	<%= label_tag(:password, 'Password:') %>
+	  	<%= password_field_tag(:password) %>
+	  	<%= submit_tag("Log In") %>
+		<% end %>
+	</div>
+	
+	<div class = "grid_12">
+		<hr>
+	</div>
+	
+	<div class = "grid_12">
+		<div id = "bin">
+			Garbage
+		</div>
+	</div>
+
+	<div class = "grid_12">
+		Playground: <%= session[:playground_id] %>
+		Player: <%= session[:player_id] %>	
+		State: <%= session[:state]%>
+	</div>
+</div>

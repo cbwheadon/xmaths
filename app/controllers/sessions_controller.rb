@@ -1,14 +1,22 @@
 class SessionsController < ApplicationController
-  def new
-  end
 
   def create
   	player = Player.find_by_name(params[:name])
   	if player and player.authenticate(params[:password])
+  		
   		session[:player_id] = player.id
-  		redirect_to admin_url
+  		session[:state] = :active
+  		player.update_attribute(:state, 1)
+  		  		
+  			respond_to do |format|
+  			    format.html { redirect_to board_url }
+        		format.js
+  			end
   	else
-  		redirect_to login_url, notice: 'Wrong User Name'
+  			respond_to do |format|
+  			    format.html { redirect_to board_url }
+        		format.js
+  			end
   	end		
   end
 

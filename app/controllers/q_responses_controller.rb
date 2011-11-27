@@ -32,6 +32,7 @@ class QResponsesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
+      format.js
       format.json { render json: @q_response }
     end
   end
@@ -91,7 +92,8 @@ class QResponsesController < ApplicationController
 		
     respond_to do |format|
       if @q_response.save
-        format.html { redirect_to @playground, notice: 'Q response was successfully created.' }
+        format.html { redirect_to @playground}
+        format.js
         format.json { render json: @q_response, status: :created, location: @q_response }
       else
         format.html { render action: "new" }

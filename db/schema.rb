@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111123171737) do
+ActiveRecord::Schema.define(:version => 20111127133927) do
 
   create_table "game_players", :force => true do |t|
     t.integer  "player_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20111123171737) do
     t.integer  "correct"
     t.decimal  "number_response"
     t.integer  "winner"
+    t.integer  "state",           :default => 0
   end
 
   create_table "playgrounds", :force => true do |t|

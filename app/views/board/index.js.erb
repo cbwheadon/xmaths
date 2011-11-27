@@ -1,1 +1,3 @@
-alert("Comments go here");
+$("#playgrounds").html("<%=raw escape_javascript(render(@playgrounds))%>");
+$("#players").html("<%=raw escape_javascript(render(@players))%>");
+$('#bin').text('<%= new_round %> done some work here');

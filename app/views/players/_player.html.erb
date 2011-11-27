@@ -1,23 +1,22 @@
+<table>
 <% if player.id == session[:player_id]%>
 	<tr class="player" bg="red">
 		<td>
-			<%= player.id %>
+			You!
 		</td>
 		<td>
-			You!
+			<%= player.state %>
 		</td>
 	</tr>
 <% else %>	
 	<tr class="player">
 		<td>
-			<%= player.id %>
+			<%= player.name %>
 		</td>
 		<td>
-			<%= player.name %>
-		</td>	
-		<td>
-			-
+			<%= player.state %>
 		</td>	
 	</tr>
 <% end %>	
+</table>
 	

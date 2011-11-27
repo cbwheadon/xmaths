@@ -15,7 +15,7 @@ $(function(){
 });
 
 function updateComments () {
-	$.getScript("/playgrounds.js")
+	$.getScript("board/index.js")
 	setTimeout(updateComments, 10000)
 }
 
