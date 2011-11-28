@@ -1,1 +1,9 @@
+<% if session[:player_id]== game_player.player.id %>
+<td id="you">You</td>
+<td><%= game_player.player.correct %></td>
+<td><%= game_player.player.time %></td>
+<% else %>
 <td><%= game_player.player.name %></td>
+<td><%= game_player.player.correct %></td>
+<td><%= game_player.player.time %></td>
+<% end %>

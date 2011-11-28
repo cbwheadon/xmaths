@@ -1,3 +1,5 @@
+<% if player.state == 1 %>
+
 <table>
 <% if player.id == session[:player_id]%>
 	<tr class="player" bg="red">
@@ -17,6 +19,7 @@
 			<%= player.state %>
 		</td>	
 	</tr>
-<% end %>	
+<% end %>
 </table>
+<% end %>	
 	

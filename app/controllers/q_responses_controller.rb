@@ -24,12 +24,15 @@ class QResponsesController < ApplicationController
   # GET /q_responses/new
   # GET /q_responses/new.json
   def new
+  	session[:state]= :in_play
   	qid = 1
   	session[:qid]=qid
   	@question = Question.find(qid)
   	@playground = Playground.find(session[:playground_id]) 	
+  	@player = Player.find(session[:player_id])
+  	@player.update_attribute(:state, 3)
     @q_response = QResponse.new
-
+	
     respond_to do |format|
       format.html # new.html.erb
       format.js
@@ -45,6 +48,8 @@ class QResponsesController < ApplicationController
   # POST /q_responses
   # POST /q_responses.json
   def create
+  	session[:state]= :answered
+  	
   	@question = Question.find(session[:qid])
   	@q_response = QResponse.new(params[:q_response])
   	if @question.number_response == @q_response.number_response
@@ -89,10 +94,11 @@ class QResponsesController < ApplicationController
 		end	
 	
 	end	
-		
+	
+	@player.update_attribute(:state, 4)
     respond_to do |format|
       if @q_response.save
-        format.html { redirect_to @playground}
+        format.html { redirect_to redirect_to board_url}
         format.js
         format.json { render json: @q_response, status: :created, location: @q_response }
       else

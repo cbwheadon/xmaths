@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   private
   helper_method :new_round
   helper_method :current_playground
+  helper_method :mark_me
   
   def current_playground
   		fg = 0
@@ -35,36 +36,65 @@ class ApplicationController < ActionController::Base
   
   private
   
-  def mark_question
+  def mark_me
   	
   	@player = Player.find(session[:player_id])
-    @player.update_attribute(:correct, 0)
+    if @player.correct == 1
+    	str = "Correct!"
+    else
+    	str = "Wrong!"
+    end	
+  	str
   	  	    
-	end
+  end
 	
 	def new_round
-	
-	#Find all available players
-	@players = Player.where(:state => 1)
-	
-		if @players.count > 1
-			@player1 = @players[0]
-			@player2 = @players[1]
 		
-			@player1.update_attribute(:state, 2)
-			@player2.update_attribute(:state, 2)
+	if session[:player_id] > 0
+  	
+		@player = Player.find(session[:player_id])
 		
-			#Make a playground for first two
-			@playground = Playground.create
-				
-			@game_player = @playground.game_players.build("player_id" => @player1.id)
-			@game_player.save
-			
-			@game_player = @playground.game_players.build("player_id" => @player2.id)
-			@game_player.save
-			
-			return(@playground.game_players.count)
+		#See if player has been assigned by another
+		if @player.state == 2 and session[:state] == :inplay
+			session[:state] = :assigned
+			@gp = GamePlayer.find(:player_id => @player.id)
+			session[:playground_id] = @gp.playground.id			
 		end
+		
+		begin	
+		#Find a partner
+		@players = Player.where("state == 1 AND id != ?",@player.id).limit(1)
+		rescue ActiveRecord::RecordNotFound
+			#No partners available
+			
+		else
+		
+			if @players.count > 0
+				@partner = @players[0]
+				
+				@partner.update_attribute(:state, 2)
+				@player.update_attribute(:state, 2)
+			
+				#Make a playground for first two
+				@playground = Playground.create
+					
+				@game_player = @playground.game_players.build("player_id" => @partner.id)
+				@game_player.save
+				
+				@game_player = @playground.game_players.build("player_id" => @player.id)
+				@game_player.save
+				
+				session[:state] = :assigned
+				session[:playground_id] = @playground.id
+				
+			end
+		end
+	
+		return(@players.count)
+		
+	end		
+	
+		return("Watching")
 		
 	end
   		

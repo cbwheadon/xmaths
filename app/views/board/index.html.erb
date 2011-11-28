@@ -21,8 +21,6 @@
 		
 	</div>
 
-<%= button_to 'Go!', new_q_response_path, method: :get, remote: true %>
-
 </div>
 <div class = "grid_5" id="question_pane">
 </div>
@@ -54,6 +52,13 @@
 	<div class = "grid_12">
 		Playground: <%= session[:playground_id] %>
 		Player: <%= session[:player_id] %>	
-		State: <%= session[:state]%>
+	
+	<div id="state">
+		State
+	</div>
+	<div id = "debug_pg">
+		Playground
+	</div>
+	
 	</div>
 </div>

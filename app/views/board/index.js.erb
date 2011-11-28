@@ -1,3 +1,5 @@
+$('#bin').text('<%= new_round %> done some work here');
 $("#playgrounds").html("<%=raw escape_javascript(render(@playgrounds))%>");
 $("#players").html("<%=raw escape_javascript(render(@players))%>");
-$('#bin').text('<%= new_round %> done some work here');
+$("#state").text("State: <%= session[:state] %>");
+$("#debug_pg").text("Playground: <%= session[:playground_id] %>");
