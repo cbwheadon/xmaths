@@ -9,7 +9,7 @@
 //= require_tree .
 
 $(function(){
-	if ($("#playgrounds").length > 0) {
+	if ($("#player_name").length > 0) {
 		setTimeout(updateComments, 10000);
 	}
 });

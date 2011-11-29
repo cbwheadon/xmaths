@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   	if player and player.authenticate(params[:password])
   		
   		session[:player_id] = player.id
-  		session[:state] = :active
+  		session[:state] = 1
   		player.update_attribute(:state, 1)
   		  		
   			respond_to do |format|

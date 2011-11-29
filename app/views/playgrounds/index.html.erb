@@ -13,6 +13,9 @@
 <% @playgrounds.each do |playground| %>
   <tr>
   	<td><%= playground.id %></id>
+  		<% playground.game_players.each do |gp| %>
+  			<td><%= gp.player.name%></td>
+  		<% end %>
   		
   	<td><%= link_to 'Show', playground %></td>
     <td><%= link_to 'Edit', edit_playground_path(playground) %></td>

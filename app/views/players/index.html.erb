@@ -3,7 +3,9 @@
 
 <table>
   <tr>
+  	<th>Id</th>
     <th>Name</th>
+    <th>State</th>
     <th>Games</th>
     <th>Wins</th>
     <th>Inarow</th>
@@ -14,7 +16,9 @@
 
 <% @players.each do |player| %>
   <tr>
+  	<td><%= player.id %></td>
     <td><%= player.name %></td>
+    <td><%= player.state %></td>
     <td><%= player.games %></td>
     <td><%= player.wins %></td>
     <td><%= player.inarow %></td>

@@ -1,25 +1,25 @@
-<% if player.state == 1 %>
-
+<% if player.id != 15 %>
 <table>
-<% if player.id == session[:player_id]%>
-	<tr class="player" bg="red">
+	<tr>
+		<td>Games:</td>
 		<td>
-			You!
-		</td>
-		<td>
-			<%= player.state %>
+			<%= player.games %>
 		</td>
 	</tr>
-<% else %>	
-	<tr class="player">
+	<tr>
+		<td>Wins:</td>
 		<td>
-			<%= player.name %>
+			<%= player.wins %>
 		</td>
-		<td>
-			<%= player.state %>
-		</td>	
 	</tr>
-<% end %>
+	<tr>
+		<td>In A Row:</td>
+	</tr>
+	<tr>
+		<td>
+			<%= player.inarow %>
+		</td>
+	</tr>
 </table>
-<% end %>	
+<% end %>
 	

@@ -1,12 +1,24 @@
-<table>
-<tr>
-	<td><%= playground.id %></td>
-	<td><%= playground.q_responses.count %></td>
-	<%= render (playground.game_players) %>
-	<% if playground.id == session[:playground_id] %>
-	<td>
-		<%= button_to 'Go!', new_q_response_path, method: :get, remote: true %>
-	</td>
+<% @gp = GamePlayer.find_last_by_player_id(@player.id) %>
+	<% if @gp %>
+		<% @playground = Playground.where(@gp.playground_id).last %>  		
+		<% if @playground.id == playground.id %>
+			<table>
+				<th align = "left">name</th>
+				<th>correct</th>
+				<th>time</th>
+				<th>winner</th>
+				<% playground.game_players.each do |gp| %>
+				<tr>
+					<td align = "left"><%= gp.player.name %></td>
+					<td align = "center"><%= gp.player.correct %></td>
+					<td align = "center"><%= gp.player.time %></td>
+					<td align = "center"><%= gp.player.winner %></td>
+				<% end %>
+				</tr>
+			</table>
+			<% if @player.state == 2 %>
+				<%= button_to 'Go!', new_q_response_path, method: :get, remote: true,  :onclick => "this.disabled = true" %>
+			<% end %>
+			
+		<% end %>
 	<% end %>
-</tr>
-</table>

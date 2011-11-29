@@ -24,7 +24,7 @@ class QResponsesController < ApplicationController
   # GET /q_responses/new
   # GET /q_responses/new.json
   def new
-  	session[:state]= :in_play
+  	session[:state]= 3
   	qid = 1
   	session[:qid]=qid
   	@question = Question.find(qid)
@@ -48,8 +48,7 @@ class QResponsesController < ApplicationController
   # POST /q_responses
   # POST /q_responses.json
   def create
-  	session[:state]= :answered
-  	
+  	session[:state]= 4
   	@question = Question.find(session[:qid])
   	@q_response = QResponse.new(params[:q_response])
   	if @question.number_response == @q_response.number_response
@@ -62,7 +61,6 @@ class QResponsesController < ApplicationController
   		
 	@player = Player.find(session[:player_id])
 	@playground = Playground.find(session[:playground_id])
-	#@playground.q_responses.build(q_response: @q_response)
 	@playground.q_responses << @q_response
 		
 	@playground.save
@@ -75,7 +73,7 @@ class QResponsesController < ApplicationController
 	if  @playground.q_responses.count == 2 
 		result = @playground.game_players[0].player.correct <=> @playground.game_players[1].player.correct
 		#both correct	
-		if result == 0 and @playground.game_players[0].player.correct == 1
+		if result == 0 && @playground.game_players[0].player.correct == 1
 			result = @playground.game_players[1].player.time <=> @playground.game_players[0].player.time
 		end	
 		
@@ -93,10 +91,14 @@ class QResponsesController < ApplicationController
 			@playground.game_players[1].player.update_attribute(:winner, 1)
 		end	
 	
+		@playground.game_players[0].player.update_attribute(:state, 5)
+		@playground.game_players[1].player.update_attribute(:state, 5)
+		
+	else
+		@player.update_attribute(:state, 4)
 	end	
 	
-	@player.update_attribute(:state, 4)
-    respond_to do |format|
+	respond_to do |format|
       if @q_response.save
         format.html { redirect_to redirect_to board_url}
         format.js

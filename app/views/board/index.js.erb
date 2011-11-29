@@ -1,5 +1,5 @@
-$('#bin').text('<%= new_round %> done some work here');
-$("#playgrounds").html("<%=raw escape_javascript(render(@playgrounds))%>");
-$("#players").html("<%=raw escape_javascript(render(@players))%>");
+$('#bin').text('Available opponents: <%= new_round %>');
+$("#player").html("<%=raw escape_javascript(render(@player))%>");
 $("#state").text("State: <%= session[:state] %>");
 $("#debug_pg").text("Playground: <%= session[:playground_id] %>");
+$("#playground").html("<%=raw escape_javascript(render(@playgrounds))%>");

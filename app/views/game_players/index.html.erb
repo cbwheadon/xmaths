@@ -7,10 +7,12 @@
     <th></th>
     <th></th>
     <th></th>
+     <th></th>
   </tr>
 
 <% @game_players.each do |game_player| %>
   <tr>
+  	<td><%= game_player.id %></td>
     <td><%= game_player.player_id %></td>
     <td><%= game_player.playground_id %></td>
     <td><%= link_to 'Show', game_player %></td>

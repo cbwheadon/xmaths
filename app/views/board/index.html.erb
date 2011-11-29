@@ -1,35 +1,58 @@
-<% if notice %>
-<p id="notice"><%= notice %></p>
-<% end %>
-
-<div class = "grid_12">
+<div class = "grid_12" align="center" style="background-color:#b0c4de;">
 	<h1>Welcome to the game board!</h1>
 </div> 
 
-<div class = "grid_4">
-	Players:	
-		<div id = "players" class="players">
-			<%= render @players %>
+<div class = "grid_4" id = "player_name" style="background-color:#9999ff;">
+	<h3><center>
+		<%= @player.name %>
+		</center>
+	</h3>
+</div> 
+
+<div class = "grid_8" align="center" style="background-color:#9999ff;">
+	<div id="notice">
+		<h3>Messages: 
+			<% if notice %>
+				<%= notice %>
+			<% end %>
+		</h3>
+	</div>	
+</div> 
+
+<div class = "grid_4" style="height:300px; background-color:#000000; color:#FFFFFF ">
+	Stats:
+		<div id = "player" class="player">
+			<%= render @player %>
 		</div>
 </div>
 	
-<div class = "grid_3">
-	Playgrounds:
-	<div id="playgrounds">
-	
-			<%= render @playgrounds %>
-		
-	</div>
-
-</div>
-<div class = "grid_5" id="question_pane">
+<div class = "grid_8" id="question_pane" style="height:300px">
 </div>
 
 <div class = "grid_12">
 	<hr>
 </div>
+
 <div class = "grid_12">
-	<div id = "login">
+	<hr>
+</div>
+
+<div class = "grid_4" id="blank">
+	Status?
+</div>
+
+<div class = "grid_8">
+	<div id="playground" align="center" style="height:120px; background-color:#9999ff;">
+			<%= render @playgrounds %>
+	</div>
+</div>
+
+<div class = "grid_12">
+	<hr>
+</div>
+
+<div class = "grid_12"  style="background-color:#9999ff;">
+	<div id = "login" align="center">
 		<%= form_tag("/login", :method => "post") do %>
 		<%= label_tag(:name, 'Name:') %>
 	  	<%= text_field_tag(:name) %>
@@ -38,27 +61,33 @@
 	  	<%= submit_tag("Log In") %>
 		<% end %>
 	</div>
-	
-	<div class = "grid_12">
-		<hr>
-	</div>
-	
-	<div class = "grid_12">
-		<div id = "bin">
-			Garbage
-		</div>
-	</div>
+</div>
 
-	<div class = "grid_12">
-		Playground: <%= session[:playground_id] %>
-		Player: <%= session[:player_id] %>	
+<div class = "grid_12">
+		
+	<div class= "footer">
+		
+	</div>
 	
+</div>
+	
+<div class = "grid_12">
+	<hr>
+</div>
+	
+<div class = "grid_12">
+	<div id = "bin">
+		Garbage
+	</div>
+</div>
+
+<div class = "grid_12">
+	Playground: <%= session[:playground_id] %>
+	Player: <%= @player.id %>	
 	<div id="state">
 		State
 	</div>
 	<div id = "debug_pg">
 		Playground
-	</div>
-	
 	</div>
 </div>
