@@ -1,11 +1,11 @@
 #states: 
 #First logged in
-#	:available
-#	:unavailable
-#	:ready
-#	:playing
-#	:waiting
-#	:complete
+#	0:watching
+#	1:waiting
+#	2:assigned
+#	3:playing
+#	4:waiting for other answer
+#	5:complete
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
@@ -50,9 +50,9 @@ class ApplicationController < ActionController::Base
 	
 	def new_round
 		
-	if @player.id != 15
-  		
 		case @player.state
+		when 0
+			#Just watching	
 		when 1
 			#Find a partner
 			@players = Player.where("state == 1 AND id != ?",@player.id).limit(1)
@@ -104,13 +104,11 @@ class ApplicationController < ActionController::Base
 		
 		return(Time.new)
 		
+		rescue ActiveRecord::RecordNotFound
+	
+			#No partners available
 	end		
 	
-		return("Watching")
-		
-	end
 	
-	rescue ActiveRecord::RecordNotFound
-	#No partners available
   		
 end

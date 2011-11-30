@@ -7,8 +7,8 @@ class BoardController < ApplicationController
 	  	rescue ActiveRecord::RecordNotFound
 	  		
 	  		if @player == nil
-	  			@player = Player.find(15)
-  				session[:player_id]=@player.id
+	  			@player = Player.new(:name => "Anon")
+  				session[:player_id]=0
   				session[:state]=0
 	  		end 			
 	end	
