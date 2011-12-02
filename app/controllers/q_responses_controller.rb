@@ -69,30 +69,43 @@ class QResponsesController < ApplicationController
 	@player.update_attribute(:time, @q_response.q_time)
 	@player.update_attribute(:correct, correct)
 	
+	@player1 = @playground.game_players[0].player
+	@player2 = @playground.game_players[1].player
+	
+	
 	#Check for complete response
 	if  @playground.q_responses.count == 2 
-		result = @playground.game_players[0].player.correct <=> @playground.game_players[1].player.correct
+		result = @player1.correct <=> @player2.correct
 		#both correct	
-		if result == 0 && @playground.game_players[0].player.correct == 1
-			result = @playground.game_players[1].player.time <=> @playground.game_players[0].player.time
+		if result == 0 && @player1.correct == 1
+			result = @player2.time <=> @player1.time
 		end	
 		
 		if result == -1
 			#player 2 wins
-			@playground.game_players[0].player.update_attribute(:winner, 0)
-			@playground.game_players[1].player.update_attribute(:winner, 3)
+			@player1.update_attribute(:winner, 0)
+			@player1.update_attribute(:inarow, 0)
+			@player2.update_attribute(:winner, 3)
+			@player2.update_attribute(:wins, @player2.wins + 1)
+			@player2.update_attribute(:inarow, @player2.inarow + 1)
 		elsif result == 1
 			#player 1 wins
-			@playground.game_players[0].player.update_attribute(:winner, 3)
-			@playground.game_players[1].player.update_attribute(:winner, 0)
+			@player1.update_attribute(:winner, 3)
+			@player1.update_attribute(:inarow, @player1.inarow + 1)
+			@player1.update_attribute(:wins, @player1.wins + 1)
+			@player2.update_attribute(:winner, 0)
+			@player2.update_attribute(:inarow, 0)
 		else
 			#draw
-			@playground.game_players[0].player.update_attribute(:winner, 1)
-			@playground.game_players[1].player.update_attribute(:winner, 1)
+			@player1.update_attribute(:winner, 1)
+			@player2.update_attribute(:winner, 1)
 		end	
 	
-		@playground.game_players[0].player.update_attribute(:state, 5)
-		@playground.game_players[1].player.update_attribute(:state, 5)
+		@player1.update_attribute(:games, @player1.games + 1)
+		@player2.update_attribute(:games, @player2.games + 1)
+		
+		@player1.update_attribute(:state, 5)
+		@player2.update_attribute(:state, 5)
 		
 	else
 		@player.update_attribute(:state, 4)

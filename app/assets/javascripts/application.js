@@ -9,10 +9,12 @@
 //= require_tree .
 
 $(function(){
-	if ($("#player_name").length > 0) {
+	if ($("#main_page").length > 0) {
 		setTimeout(updateComments, 10000);
 	}
 });
+
+$( 'title' ).html();
 
 function updateComments () {
 	$.getScript("board/index.js")

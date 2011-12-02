@@ -89,11 +89,11 @@ class ApplicationController < ActionController::Base
 			end
 		when 2
 			#See if player has been assigned by another
-			if session[:state] == 1
-				session[:state] = 2
-				@gp = GamePlayer.find(:player_id => @player.id)
-				session[:playground_id] = @gp.playground.id			
-			end
+			#if session[:state] == 1
+			#	session[:state] = 2
+			#	@gp = GamePlayer.find(:player_id => @player.id)
+			#	session[:playground_id] = @gp.playground.id			
+			#end
 		when 5..9
 			tmp = @player.state + 1
 			@player.update_attribute(:state, tmp)
