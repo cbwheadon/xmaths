@@ -1,2 +1,12 @@
-<div><%= @question.stimulus %></div>
+<script>
+
+$("#q_response_q_time").everyTime(1000,function(i) {
+					$(this).val(i);
+				});				
+
+</script>
+
+<div style="height:20px"></div>
+<div><center><%= @question.stimulus %></center></div>
+<div style="height:20px"></div>
 <%= render 'form' %>

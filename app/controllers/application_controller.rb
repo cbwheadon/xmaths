@@ -73,7 +73,6 @@ class ApplicationController < ActionController::Base
 					@game_player = @playground.game_players.build("player_id" => @player.id)
 					@game_player.save
 					
-					session[:state] = 2
 					session[:playground_id] = @playground.id
 					
 					@player.update_attribute(:number_response, 0)
@@ -89,18 +88,20 @@ class ApplicationController < ActionController::Base
 			end
 		when 2
 			#See if player has been assigned by another
-			#if session[:state] == 1
-			#	session[:state] = 2
-			#	@gp = GamePlayer.find(:player_id => @player.id)
-			#	session[:playground_id] = @gp.playground.id			
-			#end
+			if session[:state] == 1
+				@gp = GamePlayer.find_last_by_player_id(@player.id)
+				@playground = Playground.where(@gp.playground_id).last
+				session[:playground_id] = @gp.playground.id			
+			end
 		when 5..9
 			tmp = @player.state + 1
 			@player.update_attribute(:state, tmp)
-			
+						
 		when 10
 			@player.update_attribute(:state, 1)
 		end
+		
+		session[:state] = @player.state
 		
 		return(Time.new)
 		
