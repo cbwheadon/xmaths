@@ -55,13 +55,13 @@ class ApplicationController < ActionController::Base
 			#Just watching	
 		when 1
 			#Find a partner
-			@players = Player.where("state == 1 AND id != ?",@player.id)
+			@opponents = Player.where("state == 1 AND id != ?",@player.id)
 						
-			if @players.count > 0
+			if @opponents.length > 0
 				
-					a = (0..@players.count).to_a
+					a = (0..@opponents.count).to_a
 	    			p1 = a.sample
-	    			@partner = @players[p1]
+	    			@partner = @opponents[p1]
 					
 					@partner.update_attribute(:state, 2)
 					@player.update_attribute(:state, 2)
