@@ -16,7 +16,6 @@
   		<% playground.game_players.each do |gp| %>
   			<td><%= gp.player.name%></td>
   		<% end %>
-  		
   	<td><%= link_to 'Show', playground %></td>
     <td><%= link_to 'Edit', edit_playground_path(playground) %></td>
     <td><%= link_to 'Destroy', playground, confirm: 'Are you sure?', method: :delete %></td>

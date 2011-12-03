@@ -25,11 +25,34 @@ class QResponsesController < ApplicationController
   # GET /q_responses/new.json
   def new
   	session[:state]= 3
-  	qid = 1
-  	session[:qid]=qid
-  	@question = Question.find(qid)
+  	
   	@playground = Playground.find(session[:playground_id]) 	
   	@player = Player.find(session[:player_id])
+
+	#If the playground doesn't have a question, create new, otherwise find the question
+	@question = Question.where(:playground_id => @playground.id)
+	if @question.count == 0
+	  	
+	  	@question = Question.new
+		@question.stimulus = "What is ?"
+	    #t.string   "image_url"
+	    a = (0..100).to_a
+	    p1 = a.sample
+		@question.param1 = p1
+		b = (0..100).to_a
+	    p2 = b.sample
+		@question.param2 = p2
+		@question.number_response = p1 + p2
+	  	@question.playground = (@playground)
+	  	
+	  	@question.save
+	  	
+  	else 
+  		 @question = @question[0]
+  	end
+  	
+  	session[:qid]=@question.id
+    
   	@player.update_attribute(:state, 3)
     @q_response = QResponse.new
 	

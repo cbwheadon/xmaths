@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111127133927) do
+ActiveRecord::Schema.define(:version => 20111203084903) do
 
   create_table "game_players", :force => true do |t|
     t.integer  "player_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20111127133927) do
     t.decimal  "number_response"
     t.integer  "winner"
     t.integer  "state",           :default => 0
+    t.integer  "player_type"
   end
 
   create_table "playgrounds", :force => true do |t|
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20111127133927) do
     t.datetime "updated_at"
     t.integer  "game_id"
     t.integer  "q_response_id"
+    t.integer  "playground_type"
   end
 
   create_table "q_responses", :force => true do |t|
@@ -64,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20111127133927) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "number_response"
+    t.integer  "playground_id"
   end
 
 end
