@@ -1,7 +1,11 @@
+<% logger.debug "DEBUG: To find game player: #{@player.id}" %>
 <% @gp = GamePlayer.find_last_by_player_id(@player.id) %>
 	<% if @gp %>
+	<% logger.debug "DEBUG: Game Player: #{@gp.attributes.inspect}" %>
 		<% @playground = Playground.where(@gp.playground_id).last %>  		
+		<% logger.debug "DEBUG: Playground: #{@playground.attributes.inspect}" %>
 		<% if @playground.id == playground.id %>
+		<% logger.debug "DEBUG: My Playground: #{playground.id}" %>
 			<table>
 				<th align = "left">name</th>
 				<th>correct</th>

@@ -49,20 +49,22 @@ class ApplicationController < ActionController::Base
   end
 	
 	def new_round
-		
+		logger.debug "Player attributes hash: #{@player.attributes.inspect}"
 		case @player.state
 		when 0
 			#Just watching	
 		when 1
 			#Find a partner
 			@opponents = Player.where("state == 1 AND id != ?",@player.id)
-						
+					logger.debug "Available opponents: #{@opponents.length}"
 			if @opponents.length > 0
 				
-					a = (0..@opponents.count).to_a
+					a = (0...@opponents.count).to_a
 	    			p1 = a.sample
+	    			logger.debug "Opponent: #{p1}"
 	    			@partner = @opponents[p1]
 					
+	    			#Error... Triggers an occasional error...
 					@partner.update_attribute(:state, 2)
 					@player.update_attribute(:state, 2)
 				
