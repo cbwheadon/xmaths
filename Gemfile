@@ -21,7 +21,7 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -36,6 +36,6 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
   
-gem 'bcrypt-ruby'
+# gem 'bcrypt-ruby'
 
 end
