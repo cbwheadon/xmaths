@@ -1,62 +1,14 @@
-<div id="main_page" class = "grid_12" align="center">
-	<h1>Welcome to the game board!</h1>
-</div> 
+<div id="container">
 
-<div class = "grid_4" id = "player_name">
-	<h3><center>
-		<%= @player.name %>
-		</center>
-	</h3>
-</div> 
-
-<div class = "grid_8" align="center">
-	<div id="notice">
-		<h3>Messages: 
-			<% if notice %>
-				<%= notice %>
-			<% end %>
-		</h3>
-	</div>	
-</div> 
-
-<div class = "grid_12">
-	<hr>
-</div>	
-
-<div class = "grid_4" style="height:300px;">
-	Stats:
-		<div id = "player" class="player">
-			<%= render @player %>
-		</div>
-</div>
+	<div id="header">
 	
-<div class = "grid_8" id="question_pane" style="height:300px">
-</div>
-
-<div class = "grid_12">
-	<hr>
-</div>
-
-<div class = "grid_12">
-	<hr>
-</div>
-
-<div class = "grid_4" id="blank">
-	Status?
-</div>
-
-<div class = "grid_8">
-	<div id="playground" align="center" style="height:120px">
-			<%= render @playgrounds %>
+		<div id="main_page" align="center">
+			<h4>Welcome to the game board!</h4>
+		</div> 
+			
 	</div>
-</div>
-
-<div class = "grid_12">
-	<hr>
-</div>
-
-<div class = "grid_12">
-	<div id = "login" align="center">
+	
+	<div id = "login">
 		<%= form_tag("/login", :method => "post") do %>
 		<%= label_tag(:name, 'Name:') %>
 	  	<%= text_field_tag(:name) %>
@@ -65,37 +17,24 @@
 	  	<%= submit_tag("Log In") %>
 		<% end %>
 	</div>
-</div>
 
-<div class = "grid_12">
-	<hr>
-</div>	
+	<div id="question_pane">
+	
+	</div>
 
-<div class = "grid_12">
-		
-	<div class= "footer">
-		
+	<div id="sidebar">
+	
+		<div id = "player">
+			<%= render @player %>
+		</div>
+
+	</div>
+	
+	<div id = "playground">
+		<%= render @playgrounds %>
 	</div>
 	
 </div>
-	
-<div class = "grid_12">
-	<hr>
-</div>
-	
-<div class = "grid_12">
-	<div id = "bin">
-		Garbage
-	</div>
-</div>
 
-<div class = "grid_12">
-	Playground: <%= session[:playground_id] %>
-	Player: <%= @player.id %>	
-	<div id="state">
-		State
-	</div>
-	<div id = "debug_pg">
-		Playground
-	</div>
-</div>
+
+	

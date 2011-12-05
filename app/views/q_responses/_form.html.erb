@@ -15,12 +15,14 @@
     	<%= f.number_field :q_time, :hidden => true, :size => 3 %>
   </div>
   <div style="height:20px"></div>
+  <div class = "response_line">
   <div class="field">
   Answer: <%= f.number_field :number_response, :size => 5, :style => "text-align: right", :autocomplete => "off" %>
   </div>
   <div style="height:20px"></div>
   <div class="actions">
     <%= f.submit "Submit" %>
+  </div>
   </div>
   </center>
 <% end %>

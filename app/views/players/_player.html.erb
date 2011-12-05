@@ -1,25 +1,28 @@
-<% if player.id != 15 %>
-<table>
-	<tr>
-		<td>Games:</td>
-		<td>
-			<%= player.games %>
-		</td>
-	</tr>
-	<tr>
-		<td>Wins:</td>
-		<td>
-			<%= player.wins %>
-		</td>
-	</tr>
-	<tr>
-		<td>In A Row:</td>
-	</tr>
-	<tr>
-		<td>
-			<%= player.inarow %>
-		</td>
-	</tr>
-</table>
-<% end %>
-	
+<script>
+//$("#my_state").css({'background-color':'#88ff88'}).animate({'background-color':'#114411'},1000);
+$("#my_state").effect("bounce");
+</script>
+
+Games: <%= player.games %>&nbsp<BR>
+Wins: <%= player.wins %>&nbsp<BR>
+In a Row: <%= player.inarow %>&nbsp<BR><BR>
+    <div id="my_state">    
+    <% case player.state %>
+   	 <% when 0 %>
+   	 Please log in ...
+   	 <% when 1 %>
+   	 Waiting for a game ...
+   	 <% when 2 %>
+   	 Get ready to press the go button when it appears ...
+   	 <% when 3 %>
+   	 Answer the question as quick as you can ...
+   	 <% when 4 %>
+   	 Waiting for opponent ...
+   	 <% when 5 %>
+   	 Waiting for result ...
+   	 <% when 6..7 %>
+   	 Game over ...
+   	 <% when 8..10 %>
+   	 Looking for new opponent ...
+    <% end %>
+   	 </div>

@@ -1,3 +1,55 @@
 // Place all the styles related to the Board controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+	text-align: center;
+}
+
+#container {
+	background-color: white;
+	margin: 35px auto;
+	width: 660px;
+}
+
+#header {
+background-color: grey;
+	width: auto;
+	padding: 10px;
+	background-color: #980000;
+	color: white;
+}
+
+#question_pane {
+	height: 198px;
+	background-color: white;
+	width: 478px;
+	float: right;
+	padding: 10px;
+	border-style:solid;
+	border-width:1px;
+}
+
+#sidebar {
+	text-align: left;
+	background-color: grey;
+	height: 200px;
+	width: 140px;
+	float: left;
+	padding: 10px;
+}
+
+#login {
+	background-color: white;
+	width: auto;
+	padding: 8px;
+	border-style:solid;
+	border-width:1px;
+}
+
+#playground {
+	background-color: white;
+	width: auto;
+	padding: 10px;
+	border-style:solid;
+	border-width:1px;
+}

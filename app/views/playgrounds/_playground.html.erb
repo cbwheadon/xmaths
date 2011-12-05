@@ -1,28 +1,45 @@
 <% logger.debug "DEBUG: To find game player: #{@player.id}" %>
 <% @gp = GamePlayer.find_last_by_player_id(@player.id) %>
-	<% if @gp %>
-	<% logger.debug "DEBUG: Game Player: #{@gp.attributes.inspect}" %>
-		<% @playground = Playground.where(@gp.playground_id).last %>  		
-		<% logger.debug "DEBUG: Playground: #{@playground.attributes.inspect}" %>
-		<% if @playground.id == playground.id %>
-		<% logger.debug "DEBUG: My Playground: #{playground.id}" %>
-			<table>
-				<th align = "left">name</th>
-				<th>correct</th>
-				<th>time</th>
-				<th>winner</th>
-				<% playground.game_players.each do |gp| %>
-				<tr>
-					<td align = "left"><%= gp.player.name %></td>
-					<td align = "center"><%= gp.player.correct %></td>
-					<td align = "center"><%= gp.player.time %></td>
-					<td align = "center"><%= gp.player.winner %></td>
-				<% end %>
-				</tr>
-			</table>
-			<% if @player.state == 2 %>
-				<%= button_to 'Go!', new_q_response_path, method: :get, remote: true,  :onclick => "this.disabled = true" %>
-			<% end %>
-			
-		<% end %>
-	<% end %>
+    <% if @gp %>
+    <% logger.debug "DEBUG: Game Player: #{@gp.attributes.inspect}" %>
+   	 <% @playground = Playground.where(@gp.playground_id).last %> 		 
+   	 <% logger.debug "DEBUG: Playground: #{@playground.attributes.inspect}" %>
+   	 <% if @playground.id == playground.id %>
+   	 <script>
+
+		$("#draw").css({'color':'black'}).animate({'color':'blue'},1000);
+		$("#win").css({'color':'black'}).animate({'color':'green'},1000);
+
+	</script>
+   	 <% logger.debug "DEBUG: My Playground: #{playground.id}" %>
+   	 <% case @player.winner %>
+   				 <% when -1 %>
+   				 <div id="noresult">
+   				 <% when 1 %>
+   				 <div id="draw">
+   				 <% when 3 %>
+   				 <div id="win">
+   				 <% end %>
+   				 
+   			 <% playground.game_players.each do |gp| %>
+   			 <%= gp.player.name %>
+   					 <% case gp.player.correct %>
+   					 <% when -1 %>
+   					 hasn't answered yet
+   					 <% when 0 %>
+   					 was wrong in
+   					 <% when 1 %>
+   					 was right in
+   					 <% end %>   					 
+   					 <% if gp.player.time != 1000 %>
+   					 <%= gp.player.time %> seconds
+   					 <% end %>   					 
+   			 <BR>
+   			 <% end %>
+   		 </div><BR>
+   		 <% if @player.state == 2 %>
+   			 <%= button_to 'Go!', new_q_response_path, method: :get, remote: true,  :onclick => "this.disabled = true" %>
+   		 <% end %>   		 
+   	 <% end %>
+   	 
+    <% end %>
