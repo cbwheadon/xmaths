@@ -17,11 +17,11 @@
    				 <% when -1 %>
    				 <div id="noresult">
    				 <% when 0 %>
-   				 <div id="lose">
+   				 <div id="lose">You lose!<BR>
    				 <% when 1 %>
-   				 <div id="draw">
+   				 <div id="draw">Draw!<BR>
    				 <% when 3 %>
-   				 <div id="win">
+   				 <div id="win">You win!<BR>
    				 <% end %>
    				 
    			 <% playground.game_players.each do |gp| %>
