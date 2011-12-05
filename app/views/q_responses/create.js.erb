@@ -1,1 +1,2 @@
-$('#question_pane').html("<%=j mark_me %>");
+$('#question_pane').html("<%=raw escape_javascript mark_me %>");
+$("#answer").effect("fade",10000);

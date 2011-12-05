@@ -40,9 +40,9 @@ class ApplicationController < ActionController::Base
   	
   	@player = Player.find(session[:player_id])
     if @player.correct == 1
-    	str = "Correct!"
+    	str = '<div id="answer">Correct!</div>'
     else
-    	str = "Wrong!"
+    	str = '<div id="answer">Wrong!</div>'
     end	
   	str
   	  	    

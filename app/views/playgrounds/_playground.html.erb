@@ -9,12 +9,15 @@
 
 		$("#draw").css({'color':'black'}).animate({'color':'blue'},1000);
 		$("#win").css({'color':'black'}).animate({'color':'green'},1000);
+		$("#lose").css({'color':'black'}).animate({'color':'red'},1000);
 
 	</script>
    	 <% logger.debug "DEBUG: My Playground: #{playground.id}" %>
    	 <% case @player.winner %>
    				 <% when -1 %>
    				 <div id="noresult">
+   				 <% when 0 %>
+   				 <div id="lose">
    				 <% when 1 %>
    				 <div id="draw">
    				 <% when 3 %>
