@@ -11,13 +11,14 @@
 
 $(function(){
 	if ($("#main_page").length > 0) {
-		setTimeout(updateComments, 10000);
+		//setTimeout(updateComments, 10000);
+		updateComments();
 	}
 });
 
 function updateComments () {
 	$.getScript("board/index.js")
-	setTimeout(updateComments, 10000)
+	//setTimeout(updateComments, 10000)
 }
 
 jQuery.fn.extend({

@@ -12,7 +12,7 @@
   <% end %>
   <center>
   <div class="field">
-    	<%= f.number_field :q_time, :hidden => true, :size => 3 %>
+    	<%= f.hidden_field :q_time, :size => 3 %>
   </div>
   <div style="height:20px"></div>
   <div class = "response_line">
@@ -21,7 +21,7 @@
   </div>
   <div style="height:20px"></div>
   <div class="actions">
-    <%= f.submit "Submit", :onclick => "this.disabled = true" %>
+    <%= f.submit "Submit", :disable_with => 'Submitting...', :onclick => '$("#state").html("0")' %>
   </div>
   </div>
   </center>

@@ -108,7 +108,7 @@ class ApplicationController < ActionController::Base
 		
 		session[:state] = @player.state
 		
-		return(Time.new)
+		return(@player.state)
 		
 		rescue ActiveRecord::RecordNotFound
 	

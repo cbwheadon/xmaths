@@ -39,9 +39,10 @@
    					 <% end %>   					 
    			 <BR>
    			 <% end %>
-   		 </div><BR>
+   		 </div><BR><div id="send">
    		 <% if @player.state == 2 %>
-   			 <%= button_to 'Go!', new_q_response_path, method: :get, remote: true,  :onclick => "this.disabled = true" %>
+   		 	 <%= button_to 'Go!', new_q_response_path, method: :get, remote: true, :onclick => ' $(this).hide(); $("#state").html("1")' %>
+   			 </div>
    		 <% end %>   		 
    	 <% end %>
    	 

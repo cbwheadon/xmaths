@@ -1,5 +1,9 @@
-$('#bin').text('Available opponents: <%= new_round %>');
+<% new_round %>
+
 $("#player").html("<%=raw escape_javascript(render(@player))%>");
-$("#state").text("State: <%= session[:state] %>");
-$("#debug_pg").text("Playground: <%= session[:playground_id] %>");
-$("#playground").html("<%=raw escape_javascript(render(@playgrounds))%>");
+
+if($("#state").html()=="0"){
+	$("#playground").html("<%=raw escape_javascript(render(@playgrounds))%>");	
+}
+
+setTimeout(updateComments, 1000);
