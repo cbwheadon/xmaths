@@ -1,18 +1,12 @@
-<% logger.debug "DEBUG: To find game player: #{@player.id}" %>
-<% @gp = GamePlayer.find_last_by_player_id(@player.id) %>
-    <% if @gp %>
-    <% logger.debug "DEBUG: Game Player: #{@gp.attributes.inspect}" %>
-   	 <% @playground = Playground.where(@gp.playground_id).last %> 		 
-   	 <% logger.debug "DEBUG: Playground: #{@playground.attributes.inspect}" %>
-   	 <% if @playground.id == playground.id %>
-   	 <script>
+<% logger.debug "DEBUG: Playground: #{playground.attributes.inspect}" %>
+<script>
 
 		$("#draw").css({'color':'black'}).animate({'color':'blue'},1000);
 		$("#win").css({'color':'black'}).animate({'color':'green'},1000);
 		$("#lose").css({'color':'black'}).animate({'color':'red'},1000);
 
-	</script>
-   	 <% logger.debug "DEBUG: My Playground: #{playground.id}" %>
+</script>
+<% logger.debug "DEBUG: My Playground: #{playground.id}" %>
    	 <% case @player.winner %>
    				 <% when -1 %>
    				 <div id="noresult">
@@ -22,28 +16,25 @@
    				 <div id="draw">Draw!<BR>
    				 <% when 3 %>
    				 <div id="win">You win!<BR>
-   				 <% end %>
+	 <% end %>
    				 
-   			 <% playground.game_players.each do |gp| %>
+   	<% playground.game_players.each do |gp| %>
    			 <%= gp.player.name %>
    					 <% case gp.player.correct %>
-   					 <% when -1 %>
-   					 hasn't answered yet
-   					 <% when 0 %>
-   					 was wrong in
-   					 <% when 1 %>
-   					 was right in
+	   					 <% when -1 %>
+	   					 hasn't answered yet
+	   					 <% when 0 %>
+	   					 was wrong in
+	   					 <% when 1 %>
+	   					 was right in
    					 <% end %>   					 
    					 <% if gp.player.time != 1000 %>
-   					 <%= gp.player.time %> seconds
+   						 <%= gp.player.time %> seconds
    					 <% end %>   					 
    			 <BR>
-   			 <% end %>
+   	<% end %>
    		 </div><BR><div id="send">
    		 <% if @player.state == 2 %>
    		 	 <%= button_to 'Go!', new_q_response_path, method: :get, remote: true, :onclick => ' $(this).hide(); $("#state").html("1")' %>
    			 </div>
    		 <% end %>   		 
-   	 <% end %>
-   	 
-    <% end %>

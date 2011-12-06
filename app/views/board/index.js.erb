@@ -2,8 +2,15 @@
 
 $("#player").html("<%=raw escape_javascript(render(@player))%>");
 
+<% if session[:player_id] > 0 %>
 if($("#state").html()=="0"){
-	$("#playground").html("<%=raw escape_javascript(render(@playgrounds))%>");	
+	<% @pg = GamePlayer.where(:player_id => @player.id).reverse_order %>
+	<% if @pg.count > 0 %>
+		<% @my_pg = @pg[0].playground_id %>
+		<% @my_pg_obj = Playground.find(@my_pg) %>
+		$("#playground").html("<%=raw escape_javascript(render(@my_pg_obj))%>");		
+	<% end %>
 }
-
+<% end %>
 setTimeout(updateComments, 1000);
+
